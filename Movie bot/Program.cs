@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using Discord;
 using Discord.WebSocket;
 using System.Diagnostics;
@@ -32,22 +33,33 @@ namespace Movie_bot
                 LogLevel = LogSeverity.Verbose
             });
             _client.Log += Log;
-            _client.Ready += Repeating.StartTimer;
             _client.ReactionAdded += OnReactionAdded;
             await _client.LoginAsync(TokenType.Bot, Config.bot.token);
             await _client.StartAsync();
             Global.Client = _client;
             _handler = new CommandHandler();
-            await _client.SetGameAsync("$help");
             await _handler.InitializeAsync(_client);
-            await Task.Delay(-1);
+            await SetGame();
+            //await Task.Delay(-1);
         }
 
-        
+        private async Task SetGame()
+        {
+            string ThePlayingStates = $"|$help|New command $checklist @user :D";
+            string[] SplitedPlayingStates = ThePlayingStates.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+            Random random = new Random();
+            while (true)
+            {
+                string TheOne = SplitedPlayingStates[random.Next(0, SplitedPlayingStates.Length)];
+                await _client.SetGameAsync(TheOne);
+
+                Thread.Sleep(60000);
+            }
+        }
 
         private async Task OnReactionAdded(Cacheable<IUserMessage, ulong> cache, ISocketMessageChannel channel, SocketReaction reaction)
         {
-           
+
         }
 
         private static SocketTextChannel Channel;

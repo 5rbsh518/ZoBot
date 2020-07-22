@@ -10,5 +10,7 @@ namespace Movie_bot.Core.UserAccounts
     {
         public ulong ID { get; set; }
         public string movies { get; set; }
+        public int DozNumber { get; set;}
+        public bool DozAccess { get; set; }
     }
 }

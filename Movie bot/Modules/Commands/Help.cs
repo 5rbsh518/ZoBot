@@ -6,8 +6,7 @@ using Discord.WebSocket;
 
 namespace Movie_bot.Modules
 {
-    public class Help : ModuleBase<SocketCommandContext>
-        
+    public class Help : ModuleBase<SocketCommandContext>   
     {
         [Command("help")]
         public async Task AllHelp()

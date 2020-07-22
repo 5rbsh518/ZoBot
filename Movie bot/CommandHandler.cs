@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 using System.IO;
 using Discord.Commands;
 using System.Reflection;
+using Discord.WebSocket;
+using Discord.Net;
+using Discord;
+using Discord.Audio;
 
 namespace Movie_bot
 {
@@ -36,6 +40,20 @@ namespace Movie_bot
                 if (!result.IsSuccess && result.Error != CommandError.UnknownCommand)
                 {
                     Console.WriteLine(result.ErrorReason);
+                    string Dot = ".";
+                    string comma = ",";
+                    if (result.ErrorReason.ToString() == "The input text has too few parameters.")
+                    {
+                        var embed = new EmbedBuilder();
+
+                        embed.WithTitle("Error");
+                        embed.WithDescription($"{result.ErrorReason.ToString().Replace(Dot , comma)} you should try to check this `$help {context.Message.ToString().Remove(0 , 1)}`");
+                        embed.WithColor(255, 0, 0);
+                        embed.WithCurrentTimestamp();
+
+                        await context.Channel.SendMessageAsync("", false, embed);
+                    }
+                    
                 }
             }
         }

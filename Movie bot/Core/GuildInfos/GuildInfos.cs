@@ -54,6 +54,7 @@ namespace Movie_bot.Core.GuildInfos
                 ID = id,
                 movies = null,
                 Voting = null,
+                TicketNumber = 0,
                 IstheCKonlyforowner = false
             };
 

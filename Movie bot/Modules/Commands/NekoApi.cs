@@ -19,7 +19,7 @@ namespace Movie_bot.Modules.Commands
 {
     public class NekoApi : ModuleBase<SocketCommandContext>
     {
-        [Command("hug")]
+        [Command("lolice")]
         public async Task HugMember(SocketUser user)
         {
             string json = "";
@@ -28,7 +28,7 @@ namespace Movie_bot.Modules.Commands
 
             using(WebClient client = new WebClient())
             {
-                json = client.DownloadString($"https://nekobot.xyz/api/imagegen?type=threats&url={user.GetAvatarUrl()}");
+                json = client.DownloadString($"https://nekobot.xyz/api/imagegen?type=lolice&url={user.GetAvatarUrl()}");
             }
             var DataObject = JsonConvert.DeserializeObject<dynamic>(json);
             var hug = DataObject.message.ToString();
@@ -56,6 +56,16 @@ namespace Movie_bot.Modules.Commands
             embed.WithTitle($"Look What Clyde Said");
             embed.WithImageUrl(hug);
 
+            await Context.Channel.SendMessageAsync("", false, embed);
+
+        }
+        [Command("Fuck you")]
+        [Alias("Fuckyou", "F you", "Fk you", "Fyou", "Fk", "f u", "f you")]
+        public async Task Fuckyoutoo()
+        {
+            var embed = new EmbedBuilder();
+            embed.WithTitle($"Fuck you too");
+            embed.WithImageUrl("https://memegenerator.net/img/instances/34633137.jpg");
             await Context.Channel.SendMessageAsync("", false, embed);
 
         }

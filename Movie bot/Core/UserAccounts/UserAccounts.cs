@@ -53,6 +53,8 @@ namespace Movie_bot.Core.UserAccounts
             {
                 ID = id,
                 movies = null,
+                DozNumber = 0,
+                DozAccess = false
             };
 
             accounts.Add(newAccount);

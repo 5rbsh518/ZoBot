@@ -15,6 +15,8 @@ namespace Movie_bot.Core.GuildInfos
 
         public string Voting { get; set; }
 
+        public int TicketNumber { get; set; }
+
         public bool IstheCKonlyforowner { get; set; }
 
     }
