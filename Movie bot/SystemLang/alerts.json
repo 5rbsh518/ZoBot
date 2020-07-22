@@ -1,0 +1,6 @@
+{
+  "test":"hello world",
+  "WELCOME_&NAME_&BOTNAME" : "hello, {0}. My name is {1}! How may I help you?",
+  "secret" : "the secret is `ABC123`",
+  "secretF" : "the secret is {0}"
+}
