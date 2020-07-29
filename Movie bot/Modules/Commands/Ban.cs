@@ -23,27 +23,5 @@ namespace Movie_bot.Modules.Commands
             await Context.Message.DeleteAsync();
             await Context.Channel.SendMessageAsync($"{user.Mention} has been successfully banned for 1 second.");
         }
-        [Command("Saif")]
-        [RequireUserPermission(GuildPermission.BanMembers)]
-        public async Task Saif([Remainder] string msg)
-        {
-            var target = Context.Guild;
-            var getguild = GuildInfos.GetGuild(target);
-            getguild.TicketNumber +=1;
-            GuildInfos.SaveGuildInfo();
-
-            var embed = new EmbedBuilder();
-            embed.WithTitle($"Ticket#{getguild.TicketNumber}");
-            embed.WithAuthor(Context.User);
-            embed.WithDescription($"``{msg}``");
-
-            await Context.Guild.GetTextChannel(696219244987416618).SendMessageAsync("", false, embed);
-
-            await Context.Channel.SendMessageAsync("Please join the ticket channel");
-            var tickettc = await Context.Guild.CreateTextChannelAsync($"Ticket#{getguild.TicketNumber}");
-            var everyonerole = Context.Guild.EveryoneRole;
-
-
-        }
     }
 }
